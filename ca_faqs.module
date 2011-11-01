@@ -1,0 +1,89 @@
+<?php
+
+include_once('ca_faqs.features.inc');
+
+function ca_faqs_action_info() {
+  return array(
+    'ca_faqs_add_faqs_admin_action' => array(
+      'type' => 'user',
+      'description' => t('Add faq administrator role'),
+    ),
+    'ca_faqs_remove_faqs_admin_action' => array(
+      'type' => 'user',
+      'description' => t('Remove faq administrator role'),
+    ),
+  );
+}
+
+function ca_faqs_add_faqs_admin_action($user, $context) {
+  $available_roles = user_roles(TRUE);
+  $roles = $user->roles;
+  foreach ($available_roles as $key => $role) {
+    if ($role == 'faqs administrator') {
+      $add_roles[$key] = $role;
+    }
+  }
+  $roles += $add_roles;
+  user_save($user, array('roles' => $roles));
+}
+
+function ca_faqs_add_faqs_admin_action_form() {
+  $form = array();
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Promote to FAQ Administrator',
+  );
+  return $form;
+}
+
+function ca_faqs_add_faqs_admin_action_submit(&$form, &$form_state) {
+  
+}
+
+function ca_faqs_remove_faqs_admin_action($user, $context) {
+  $available_roles = user_roles(TRUE);
+  $roles = $user->roles;
+  foreach ($available_roles as $key => $role) {
+    if ($role == 'faqs administrator') {
+      $remove_roles[$key] = $role;
+    }
+  }
+  $roles = array_diff($roles, $remove_roles);
+  user_save($user, array('roles' => $roles));
+}
+
+function ca_faqs_remove_faqs_admin_action_form() {
+  $form = array();
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Demote from FAQ Administrator',
+  );
+  return $form;
+}
+
+function ca_faqs_remove_faqs_admin_action_submit(&$form, &$form_state) {
+  
+}
+
+/**
+ * Implements hook_theme().
+ * Overrides the FAQ Module hook_theme().
+ */
+function ca_faq_theme() {
+  $path = drupal_get_path('module', 'ca_faq') .'/includes';
+  return array(
+    'faq_hide_answer' => array(
+      'path' => $path,
+      'file' => 'ca_faq.hide_answer.inc',
+      'template' => 'faq-hide-answer',
+      'arguments' => array('data' => NULL),
+    ),
+    /*  'faq_category_hide_answer' => array(
+      'path' => $path,
+      'file' => 'ca_faq.hide_answer.inc',
+      'template' => 'faq-category-hide-answer',
+      'arguments' => array('data' => NULL, 'display_header' => 0, 'category_display' => NULL, 'term' => NULL, 'class' => NULL, 'parent_term' => NULL),
+    ), */
+  );
+}
+
