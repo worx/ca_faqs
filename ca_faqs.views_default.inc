@@ -19,6 +19,201 @@ function ca_faqs_views_default_views() {
   $handler = $view->new_display('default', 'Defaults', 'default');
   $handler->override_option('fields', array(
     'title' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 1,
+        'text' => '<h3 class="title">[title]</h3>',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 1,
+      'exclude' => 0,
+      'id' => 'title',
+      'table' => 'node',
+      'field' => 'title',
+      'relationship' => 'none',
+      'override' => array(
+        'button' => 'Override',
+      ),
+    ),
+    'teaser' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'exclude' => 0,
+      'id' => 'teaser',
+      'table' => 'node_revisions',
+      'field' => 'teaser',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'none',
+    ),
+    'view_node' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'text' => 'read more »',
+      'exclude' => 0,
+      'id' => 'view_node',
+      'table' => 'node',
+      'field' => 'view_node',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'none',
+    ),
+    'nothing' => array(
+      'label' => '',
+      'alter' => array(
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'exclude' => 0,
+      'id' => 'nothing',
+      'table' => 'views',
+      'field' => 'nothing',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'none',
+    ),
+  ));
+  $handler->override_option('sorts', array(
+    'weight' => array(
+      'order' => 'DESC',
+      'id' => 'weight',
+      'table' => 'faq_weights',
+      'field' => 'weight',
+      'relationship' => 'none',
+    ),
+    'created' => array(
+      'order' => 'DESC',
+      'granularity' => 'second',
+      'id' => 'created',
+      'table' => 'node',
+      'field' => 'created',
+      'relationship' => 'none',
+    ),
+  ));
+  $handler->override_option('filters', array(
+    'type' => array(
+      'operator' => 'in',
+      'value' => array(
+        'faq' => 'faq',
+      ),
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'type',
+      'table' => 'node',
+      'field' => 'type',
+      'relationship' => 'none',
+    ),
+    'status' => array(
+      'operator' => '=',
+      'value' => '1',
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'status',
+      'table' => 'node',
+      'field' => 'status',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'none',
+    ),
+  ));
+  $handler->override_option('access', array(
+    'type' => 'none',
+  ));
+  $handler->override_option('cache', array(
+    'type' => 'none',
+  ));
+  $handler->override_option('items_per_page', 25);
+  $handler->override_option('use_pager', '1');
+  $handler->override_option('style_options', array(
+    'grouping' => '',
+  ));
+  $handler = $view->new_display('panel_pane', 'CA FAQs Admin', 'panel_pane_1');
+  $handler->override_option('fields', array(
+    'title' => array(
       'label' => 'Question',
       'alter' => array(
         'alter_text' => 0,
@@ -110,23 +305,6 @@ function ca_faqs_views_default_views() {
       'relationship' => 'none',
     ),
   ));
-  $handler->override_option('sorts', array(
-    'weight' => array(
-      'order' => 'DESC',
-      'id' => 'weight',
-      'table' => 'faq_weights',
-      'field' => 'weight',
-      'relationship' => 'none',
-    ),
-    'created' => array(
-      'order' => 'DESC',
-      'granularity' => 'second',
-      'id' => 'created',
-      'table' => 'node',
-      'field' => 'created',
-      'relationship' => 'none',
-    ),
-  ));
   $handler->override_option('filters', array(
     'type' => array(
       'operator' => 'in',
@@ -145,14 +323,6 @@ function ca_faqs_views_default_views() {
       'relationship' => 'none',
     ),
   ));
-  $handler->override_option('access', array(
-    'type' => 'none',
-  ));
-  $handler->override_option('cache', array(
-    'type' => 'none',
-  ));
-  $handler->override_option('items_per_page', 25);
-  $handler->override_option('use_pager', '1');
   $handler->override_option('style_plugin', 'bulk');
   $handler->override_option('style_options', array(
     'grouping' => '',
@@ -335,7 +505,6 @@ function ca_faqs_views_default_views() {
       ),
     ),
   ));
-  $handler = $view->new_display('panel_pane', 'CA FAQs Admin', 'panel_pane_1');
   $handler->override_option('pane_title', 'CA FAQs Admin');
   $handler->override_option('pane_description', '');
   $handler->override_option('pane_category', array(
@@ -356,6 +525,138 @@ function ca_faqs_views_default_views() {
   $handler->override_option('argument_input', array());
   $handler->override_option('link_to_view', 0);
   $handler->override_option('inherit_panels_path', 0);
+  $handler = $view->new_display('block', 'Random FAQ Teaser Block', 'block_1');
+  $handler->override_option('sorts', array(
+    'random' => array(
+      'order' => 'ASC',
+      'id' => 'random',
+      'table' => 'views',
+      'field' => 'random',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+      'relationship' => 'none',
+    ),
+  ));
+  $handler->override_option('items_per_page', 1);
+  $handler->override_option('use_pager', '0');
+  $handler->override_option('block_description', '');
+  $handler->override_option('block_caching', -1);
+  $handler = $view->new_display('block', 'Random FAQ Full Block', 'block_2');
+  $handler->override_option('fields', array(
+    'title' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 1,
+        'text' => '<h3 class="title">[title]</h3>',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 1,
+      'exclude' => 0,
+      'id' => 'title',
+      'table' => 'node',
+      'field' => 'title',
+      'relationship' => 'none',
+      'override' => array(
+        'button' => 'Override',
+      ),
+    ),
+    'body' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'exclude' => 0,
+      'id' => 'body',
+      'table' => 'node_revisions',
+      'field' => 'body',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+      'relationship' => 'none',
+    ),
+    'nothing' => array(
+      'label' => '',
+      'alter' => array(
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'exclude' => 0,
+      'id' => 'nothing',
+      'table' => 'views',
+      'field' => 'nothing',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'none',
+    ),
+  ));
+  $handler->override_option('sorts', array(
+    'random' => array(
+      'order' => 'ASC',
+      'id' => 'random',
+      'table' => 'views',
+      'field' => 'random',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+      'relationship' => 'none',
+    ),
+  ));
+  $handler->override_option('items_per_page', 1);
+  $handler->override_option('use_pager', '0');
+  $handler->override_option('block_description', '');
+  $handler->override_option('block_caching', -1);
 
   $views[$view->name] = $view;
 
